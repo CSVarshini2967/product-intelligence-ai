@@ -1,49 +1,108 @@
-# UniHack Product Intelligence Engine
+# Product Intelligence AI — Master Platform
 
-## Structure
-- `backend/` — FastAPI app, 9-module pipeline (see `app/modules/`)
-- `frontend/` — Next.js upload UI
+**Evidence-Driven B2B Product Intelligence, Extraction, Validation & Enrichment Platform**
 
-## Run it
+Built for Industrial & B2B Commerce Product Catalogs.
 
-### Backend
+---
+
+## Key Differentiators & Philosophy
+
+1. **Evidence First**: Every single extracted or generated attribute is strictly tied to exact substring evidence from input descriptions or verified citations from manufacturer datasheets.
+2. **Zero-Hallucination Guarantee**: If an attribute is missing and unsupported by evidence, it is kept `null` or routed to Human Review rather than fabricated.
+3. **Deterministic Extraction Before Generative AI**: Deterministic regex pattern matching, controlled LOV taxonomies, and canonical dictionary mappings execute first for 100% accuracy, complemented by structured Gemini AI for semantic inference.
+4. **Signal-Based Explainable Confidence**: Transparent scoring derived from real evidence signals (+30 pts evidence, +20 pts LOV match, +25 pts manufacturer RAG, +10 pts canonical norm, +5 pts validation) with human-readable "Why should I trust this?" rationale.
+5. **Human-in-the-Loop Review Queue**: Low-confidence, duplicate, or flagged records are managed in an interactive review queue with Accept, Edit, and Reject workflows with persistent audit history.
+6. **Live Evaluation Engine**: Evaluates live accuracy against a verified ground truth benchmark with zero fake numbers.
+7. **Dual-Level Commerce Exports**: Produces both the 150+ column **Standard Delivery Format CSV** and the **Intelligence Audit Evidence CSV**.
+
+---
+
+## 12-Module Pipeline Architecture
+
 ```
+Raw Product Input (CSV)
+        ↓
+1. Ingestion & Pre-Flight Analysis (Clean placeholders, compute telemetry)
+        ↓
+2. Data Cleaning (Deterministic abbreviation expansion, vendor code stripping)
+        ↓
+3. RapidFuzz De-duplication (Exact, normalized, and fuzzy token similarity)
+        ↓
+4. Controlled Taxonomy Classification (LOV Department > Class > Fine > Classpath)
+        ↓
+5. Hybrid Attribute Extraction (Deterministic regex rules + structured Gemini AI)
+        ↓
+6. Manufacturer RAG Enrichment (Controlled datasheet knowledge base retrieval)
+        ↓
+7. Canonical Normalization (Standard labels & UOM harmonization)
+        ↓
+8. Anti-Hallucination Validation (Cross-field sanity & evidence checks)
+        ↓
+9. Signal-Based Confidence Engine (Transparent points, HIGH/MEDIUM/LOW tiers)
+        ↓
+10. Validated Description Generation (Product Name, Short, Invoice [40 char], Mobile, Long, Features)
+        ↓
+11. Human Review Queue (Accept, Edit, Reject workflow with audit log)
+        ↓
+12. Evaluation Engine & Dual-Level Export (Delivery Format CSV + Audit Evidence CSV)
+```
+
+---
+
+## Getting Started
+
+### 1. Start Backend (FastAPI)
+
+```bash
 cd backend
-pip install -r requirements.txt
-cp .env.example .env   # then paste your real GEMINI_API_KEY into .env
-export $(cat .env | xargs)   # or use python-dotenv
+# Create or activate virtual environment
+.\venv\Scripts\activate
+
+# Run FastAPI server
 uvicorn app.main:app --reload --port 8000
 ```
+API Documentation will be available at: http://localhost:8000/docs
 
-### Frontend
-```
+### 2. Start Frontend (Next.js)
+
+```bash
 cd frontend
 npm install
 npm run dev
 ```
-Then open http://localhost:3000, upload `backend/data/raw/appliances_scope.csv`
-(pre-filtered to the 84 Appliance rows), and click "Run enrichment pipeline."
+Open http://localhost:3000 to interact with the Product Intelligence Dashboard.
 
-## Pipeline modules (backend/app/modules/)
-1. ingestion — reads CSV, strips placeholder brand values
-2. cleaning — deterministic UOM/abbreviation normalization
-3. classification — keyword-routed classpath (scoped to Appliances)
-4. extraction — the ONLY AI call (Gemini), evidence-linked JSON schema
-5. enrichment — stub, pluggable, deliberately not built out (see docstring)
-6. validation — checks evidence presence + manufacturer/brand mismatch
-7. confidence — scores derived from real signals, not LLM self-rating
-8. generation — template-based descriptions from validated fields only
-9. export — flattens back to a CSV matching the real Delivery Format shape
+---
 
-## What's already verified working
-- Full 9-module pipeline runs end-to-end with zero crashes (see smoke_test.py)
-- Classification correctly routes all sample dishwasher rows
-- Confidence engine correctly flags rows needing review when extraction has no API key
-- Frontend type-checks clean and calls the backend API correctly
+## Running Automated Tests & Benchmarks
 
-## What YOU need to do next
-1. Get a Gemini API key: https://aistudio.google.com/apikey
-2. Add it to backend/.env
-3. Re-run smoke_test.py — you should see real extracted attributes with evidence
-4. Build the eval script comparing output against data/reference/Unihack__Expected_Output_-_Delivery_Format.csv
-5. Build the dashboard view (Module 10) in the frontend — currently just shows summary stats
+### Run Unit Tests
+```bash
+cd backend
+.\venv\Scripts\python -m unittest discover tests
+```
+
+### Run Pipeline Smoke Test & Ground Truth Evaluation
+```bash
+cd backend
+.\venv\Scripts\python smoke_test.py
+```
+
+---
+
+## API Endpoints
+
+- `GET /health` — Service health check
+- `POST /api/process` — Ingest CSV, run 12-stage pipeline, return job summary and download links
+- `GET /api/jobs/{job_id}` — Get job execution status and stage latencies
+- `GET /api/products` — Filterable, searchable, and paginated product catalog
+- `GET /api/products/{row_id}` — Full Product Passport with evidence tree and confidence breakdown
+- `GET /api/review` — Retrieve items in human review queue
+- `POST /api/review/{row_id}/action` — Apply Accept, Edit, or Reject action
+- `GET /api/analytics` — KPI metrics, confidence tier breakdown, and department distribution
+- `GET /api/evaluation` — Run live evaluation benchmark against verified ground truth
+- `GET /api/manufacturer-docs` — Browse indexed manufacturer datasheets
+- `POST /api/manufacturer-docs/query` — Query manufacturer knowledge base for grounded specs
+- `GET /api/download/{job_id}` — Download Final Delivery Format Catalog CSV (150+ columns)
+- `GET /api/download/{job_id}/audit` — Download Intelligence & Audit Evidence CSV

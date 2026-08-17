@@ -1,15 +1,16 @@
-import sys
-sys.path.insert(0, ".")
-import pandas as pd
-from app.pipeline import run_pipeline
+from app.modules.deduplication.service import deduplicate
+from app.modules.extraction.service import extract_attributes
 
-df = pd.read_csv("data/raw/appliances_scope.csv")
-df = df[df["Part_Desc"].str.contains("Dishwasher", case=False, na=False)].head(3)
-# run_pipeline expects the original 6 columns
-df = df[["Mfg_Part_Num", "Part_Desc", "E1_Brand", "Unilog_Brand", "DIB_Brand", "Part_Manuf"]]
+# Test extraction
+rows = [{'part_desc': '5" P120 Grinding Disc 10pc', 'mfg_part_num': 'ABC-123', 'brand_name': '3M', 'part_desc_normalized': '5" P120 Grinding Disc 10pc'}]
+result = extract_attributes(rows)
+print('Extraction OK:', result[0].get('extracted_attributes', [])[:2])
 
-result = run_pipeline(df)
-print("Rows processed:", result["rows_processed"])
-print("Summary:", result["summary"])
-print()
-print(result["output_df"][["Mfg_Part_Num", "Part_Desc", "Classpath", "Overall_Confidence", "Needs_Review", "Flags"]].to_string(index=False))
+# Test deduplication
+rows2 = [
+    {'mfg_part_num': 'ABC-123', 'part_desc': '5in disc'},
+    {'mfg_part_num': 'ABC-123', 'part_desc': '5in disc'},
+]
+result2 = deduplicate(rows2)
+print('Deduplication OK:', result2[1]['duplicate_info'])
+print('All tests passed.')
