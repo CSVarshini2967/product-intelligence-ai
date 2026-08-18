@@ -11,3 +11,5 @@ node_modules/
 # Output files
 *.csv
 data/
+!data/manufacturer_docs/
+!data/manufacturer_docs/**

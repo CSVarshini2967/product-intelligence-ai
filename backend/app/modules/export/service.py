@@ -6,7 +6,7 @@ Responsibility: Produce dual-level export formats:
 """
 import pandas as pd
 from typing import List, Dict, Any
-
+SKU_BASE = 1_000_001
 DELIVERY_FORMAT_COLUMNS = [
     "MFR URL", "Ref URL 1", "Ref URL 2", "Ref URL 3", "Ref URL 4", "Ref URL 5",
     "PART_NUMBER", "Dept", "Class", "Fine", "SKU - MY_PART_NUMBER",
@@ -47,7 +47,7 @@ def build_output(rows: List[Dict[str, Any]]) -> pd.DataFrame:
         row_dict["Dept"] = r.get("dept", "")
         row_dict["Class"] = r.get("class_name", "")
         row_dict["Fine"] = r.get("fine", "")
-        row_dict["SKU - MY_PART_NUMBER"] = str(r.get("row_id", ""))
+        row_dict["SKU - MY_PART_NUMBER"] = str(SKU_BASE + int(r.get("row_id", 0)))
         row_dict["Mfg_Part_Num"] = r.get("mfg_part_num", "")
         row_dict["Part_Desc"] = r.get("part_desc", "")
         row_dict["E1_Brand"] = r.get("e1_brand", "")
@@ -85,7 +85,7 @@ def build_output(rows: List[Dict[str, Any]]) -> pd.DataFrame:
         if doc_refs:
             row_dict["Specification Sheet"] = doc_refs[0]
             row_dict["Actual Image (Yes/No)"] = "Yes"
-
+        row_dict["MFR URL"] = r.get("enrichment_mfr_url", "")
         formatted_rows.append(row_dict)
 
     return pd.DataFrame(formatted_rows, columns=DELIVERY_FORMAT_COLUMNS)

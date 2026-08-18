@@ -8,6 +8,12 @@ import re
 from typing import List, Dict, Any
 from rapidfuzz import fuzz
 
+VARIANT_NOISE = re.compile(r'\d+(\.\d+)?"?|\d+/\d+"?')
+
+def strip_variant_tokens(desc: str) -> str:
+    """Remove size/length/grit digit-tokens so SKU variants in the same
+    product family don't score as duplicates against each other."""
+    return re.sub(VARIANT_NOISE, '', desc).strip()
 
 def normalize_part_number(mpn: str) -> str:
     """Strip all hyphens, spaces, dots for alphanumeric matching."""
@@ -49,32 +55,34 @@ def deduplicate(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             cluster_id = f"CLUST-NORM-{norm_mpn}"
             reason = f"Normalized part number match with row {orig_idx}"
         else:
-            # 3. Fuzzy similarity against previous 50 items (sliding window for efficiency)
-            window_start = max(0, i - 50)
-            best_sim = 0.0
-            best_match_idx = -1
+            
+            # Fuzzy text comparison is only meaningful when we don't have a
+            # reliable part number to key off. If MPN exists, exact/normalized
+            # matching above already covers true duplicates — running fuzzy
+            # text similarity on top of that just flags templated product-family
+            # siblings (same series, different color/size) as false positives.
+            if not mpn:
+                window_start = max(0, i - 50)
+                best_sim = 0.0
+                best_match_idx = -1
+                for prev_idx in range(window_start, i):
+                    prev_row = rows[prev_idx]
+                    prev_desc = str(prev_row.get("part_desc", "")).strip()
+                    ratio = fuzz.token_set_ratio(desc.lower(), prev_desc.lower())
+                    if ratio > best_sim:
+                        best_sim = ratio
+                        best_match_idx = prev_idx
 
-            for prev_idx in range(window_start, i):
-                prev_row = rows[prev_idx]
-                prev_desc = str(prev_row.get("part_desc", "")).strip()
-                
-                # Check description token set ratio
-                ratio = fuzz.token_set_ratio(desc.lower(), prev_desc.lower())
-                if ratio > best_sim:
-                    best_sim = ratio
-                    best_match_idx = prev_idx
-
-            if best_sim >= 95.0:
-                dup_status = "DUPLICATE"
-                sim_score = round(best_sim / 100.0, 2)
-                cluster_id = f"CLUST-FUZZ-{best_match_idx}"
-                reason = f"High description similarity ({best_sim:.0f}%) with row {best_match_idx}"
-            elif best_sim >= 85.0:
-                dup_status = "POSSIBLE_DUPLICATE"
-                sim_score = round(best_sim / 100.0, 2)
-                cluster_id = f"CLUST-POSS-{best_match_idx}"
-                reason = f"Possible duplicate ({best_sim:.0f}% similarity) with row {best_match_idx}"
-
+                if best_sim >= 95.0:
+                    dup_status = "DUPLICATE"
+                    sim_score = round(best_sim / 100.0, 2)
+                    cluster_id = f"CLUST-FUZZ-{best_match_idx}"
+                    reason = f"High description similarity ({best_sim:.0f}%) with row {best_match_idx}"
+                elif best_sim >= 90.0:
+                    dup_status = "POSSIBLE_DUPLICATE"
+                    sim_score = round(best_sim / 100.0, 2)
+                    cluster_id = f"CLUST-POSS-{best_match_idx}"
+                    reason = f"Possible duplicate ({best_sim:.0f}% similarity) with row {best_match_idx}"
         if mpn:
             seen_exact_mpn[mpn] = i
         if norm_mpn:

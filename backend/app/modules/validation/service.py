@@ -78,8 +78,10 @@ def validate_row(r: Dict[str, Any]) -> Dict[str, Any]:
 
     # 4. Duplicate flag check
     dup_info = r.get("duplicate_info", {})
-    if dup_info.get("status") in ["DUPLICATE", "POSSIBLE_DUPLICATE"]:
+    if dup_info.get("status") == "DUPLICATE":
         review_reasons.append(f"Duplicate warning: {dup_info.get('match_reason')}")
+    elif dup_info.get("status") == "POSSIBLE_DUPLICATE":
+        r.setdefault("flags", []).append("possible_duplicate")  # badge only, not forced review
 
     return r
 

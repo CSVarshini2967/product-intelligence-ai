@@ -46,6 +46,7 @@ def query_rag_by_mpn(mpn: str, kb_docs: List[Dict[str, Any]]) -> List[Dict[str, 
         models = [m.upper().replace("-", "").strip() for m in doc.get("model_numbers", [])]
         if any(norm_mpn in m or m in norm_mpn for m in models):
             doc_name = doc.get("document_name", "manufacturer_datasheet.pdf")
+            doc_url = doc.get("source_url", "")          
             specs = doc.get("specifications", {})
             for attr_name, spec_info in specs.items():
                 matched_specs.append({
@@ -58,7 +59,8 @@ def query_rag_by_mpn(mpn: str, kb_docs: List[Dict[str, Any]]) -> List[Dict[str, 
                     "inferred": False,
                     "confidence": 0.98,
                     "validation": "grounded",
-                    "source_reference": f"{doc_name} (p. {spec_info.get('page', 1)})"
+                    "source_reference": f"{doc_name} (p. {spec_info.get('page', 1)})",
+                    "mfr_url": doc_url,                   
                 })
             break
 
@@ -91,10 +93,11 @@ def enrich(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             r["enrichment_applied"] = True
             r["enrichment_source"] = "Manufacturer Datasheet RAG"
             r["enrichment_doc_refs"] = list(doc_refs)
+            r["enrichment_mfr_url"] = rag_attrs[0].get("mfr_url", "")
             r.setdefault("confidence_reasons", []).append(f"✓ Enriched {added_count} attributes from manufacturer datasheet RAG")
         else:
             r["enrichment_applied"] = False
             r["enrichment_source"] = None
             r["enrichment_doc_refs"] = []
-
+            r["enrichment_mfr_url"] = ""
     return rows
