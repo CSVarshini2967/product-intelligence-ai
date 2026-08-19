@@ -80,6 +80,28 @@ export default function DashboardOverview({
     }
   };
 
+  if (!analytics) {
+    return (
+      <div className="glass-card rounded-2xl p-16 text-center space-y-4">
+        <UploadCloud className="w-14 h-14 text-indigo-400 mx-auto" />
+        <h3 className="text-lg font-bold text-white">No Catalog Loaded Yet</h3>
+        <p className="text-sm text-slate-400 max-w-md mx-auto">
+          Upload a raw ERP CSV to run it through the 12-stage intelligence pipeline and see enrichment results here.
+        </p>
+        <label className="inline-flex cursor-pointer items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-500">
+          <span>{loading ? "Running Intelligence Pipeline..." : "Upload Catalog CSV"}</span>
+          <input
+            type="file"
+            accept=".csv"
+            onChange={handleChange}
+            className="sr-only"
+            disabled={loading}
+          />
+        </label>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       {/* Top Banner / Philosophy Alert */}

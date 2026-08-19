@@ -55,12 +55,38 @@ export default function ReviewQueue({
   onAction,
   loading,
 }: ReviewQueueProps) {
-  const [editingRow, setEditingRow] = useState<number | null>(null);
+    const [editingRow, setEditingRow] = useState<number | null>(null);
   const [editLabel, setEditLabel] = useState("");
   const [editValue, setEditValue] = useState("");
   const [editUom, setEditUom] = useState("");
   const [notes, setNotes] = useState("");
   const [actionInProgress, setActionInProgress] = useState<number | null>(null);
+
+  const [filterCategory, setFilterCategory] = useState<"ALL" | "LOW_CONFIDENCE" | "UNCERTAIN" | "DUPLICATES">("ALL");
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 10;
+
+  const categorize = (p: ProductRecord): "LOW_CONFIDENCE" | "UNCERTAIN" | "DUPLICATES" => {
+    if (p.flags?.includes("duplicate_detected") || p.flags?.includes("possible_duplicate")) return "DUPLICATES";
+    if (p.confidence_tier === "LOW") return "LOW_CONFIDENCE";
+    return "UNCERTAIN";
+  };
+
+  const filteredItems = filterCategory === "ALL"
+    ? reviewItems
+    : reviewItems.filter((p) => categorize(p) === filterCategory);
+
+  const totalPages = Math.max(1, Math.ceil(filteredItems.length / PAGE_SIZE));
+  const safePage = Math.min(currentPage, totalPages);
+  const pageItems = filteredItems.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+  const handleFilterChange = (val: typeof filterCategory) => {
+    setFilterCategory(val);
+    setCurrentPage(1);
+  };
+
+  const countFor = (cat: "LOW_CONFIDENCE" | "UNCERTAIN" | "DUPLICATES") =>
+    reviewItems.filter((p) => categorize(p) === cat).length;
 
   const handleEditOpen = (p: ProductRecord) => {
     setEditingRow(p.row_id);
@@ -103,7 +129,7 @@ export default function ReviewQueue({
           <h2 className="text-sm font-bold text-white tracking-wide flex items-center gap-2">
             <span>Human-in-the-Loop Review Queue</span>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
-              {reviewItems.length} PENDING AUDITS
+              {pageItems.length} PENDING AUDITS
             </span>
           </h2>
           <p className="text-xs text-slate-400 mt-1">
@@ -111,7 +137,18 @@ export default function ReviewQueue({
           </p>
         </div>
 
-        <div className="flex items-center space-x-2 text-xs">
+      <div className="flex items-center space-x-3 text-xs">
+          <select
+            value={filterCategory}
+            onChange={(e) => handleFilterChange(e.target.value as any)}
+            className="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
+          >
+            <option value="ALL">All ({pageItems.length})</option>
+            <option value="LOW_CONFIDENCE">Low Confidence ({countFor("LOW_CONFIDENCE")})</option>
+            <option value="UNCERTAIN">Uncertain ({countFor("UNCERTAIN")})</option>
+            <option value="DUPLICATES">Duplicates ({countFor("DUPLICATES")})</option>
+          </select>
+
           <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
           <span className="text-slate-300 font-medium">Auto-Tuned Routing Active</span>
         </div>
@@ -119,7 +156,7 @@ export default function ReviewQueue({
 
       {/* Review Items Grid */}
       <div className="space-y-4">
-        {reviewItems.map((p) => {
+        {pageItems.map((p) => {
           const isEditing = editingRow === p.row_id;
           const isBusy = actionInProgress === p.row_id;
           const confPct = Math.round(p.overall_confidence * 100);
@@ -290,13 +327,43 @@ export default function ReviewQueue({
           );
         })}
 
-        {reviewItems.length === 0 && (
+                {pageItems.length === 0 && (
           <div className="p-12 text-center glass-card rounded-2xl space-y-3">
             <UserCheck className="w-12 h-12 text-emerald-400 mx-auto" />
             <h3 className="text-base font-bold text-white">Review Queue Clean</h3>
             <p className="text-xs text-slate-400 max-w-sm mx-auto">
               All catalog records meet high confidence standards or have already been reviewed and approved by data specialists.
             </p>
+          </div>
+        )}
+
+        {pageItems.length > 0 && filteredItems.length === 0 && (
+          <div className="p-12 text-center glass-card rounded-2xl space-y-3">
+            <UserCheck className="w-12 h-12 text-slate-500 mx-auto" />
+            <h3 className="text-base font-bold text-white">No items in this category</h3>
+            <p className="text-xs text-slate-400 max-w-sm mx-auto">
+              Try selecting a different filter from the dropdown above.
+            </p>
+          </div>
+        )}
+
+        {filteredItems.length > 0 && (
+          <div className="flex items-center justify-between pt-2 text-xs text-slate-400">
+            <button
+              disabled={safePage === 1}
+              onClick={() => setCurrentPage((p) => p - 1)}
+              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed font-medium"
+            >
+              Prev
+            </button>
+            <span className="font-mono">Page {safePage} of {totalPages}</span>
+            <button
+              disabled={safePage === totalPages}
+              onClick={() => setCurrentPage((p) => p + 1)}
+              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed font-medium"
+            >
+              Next
+            </button>
           </div>
         )}
       </div>
