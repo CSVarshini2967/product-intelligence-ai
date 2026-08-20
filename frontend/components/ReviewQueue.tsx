@@ -129,7 +129,7 @@ export default function ReviewQueue({
           <h2 className="text-sm font-bold text-white tracking-wide flex items-center gap-2">
             <span>Human-in-the-Loop Review Queue</span>
             <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
-              {pageItems.length} PENDING AUDITS
+              {filteredItems.length} PENDING AUDITS
             </span>
           </h2>
           <p className="text-xs text-slate-400 mt-1">
@@ -143,7 +143,7 @@ export default function ReviewQueue({
             onChange={(e) => handleFilterChange(e.target.value as any)}
             className="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
           >
-            <option value="ALL">All ({pageItems.length})</option>
+            <option value="ALL">All ({reviewItems.length})</option>
             <option value="LOW_CONFIDENCE">Low Confidence ({countFor("LOW_CONFIDENCE")})</option>
             <option value="UNCERTAIN">Uncertain ({countFor("UNCERTAIN")})</option>
             <option value="DUPLICATES">Duplicates ({countFor("DUPLICATES")})</option>

@@ -48,8 +48,9 @@ TAXONOMY_RULES: List[Tuple[List[str], Tuple[str, str, str, str]]] = [
         ["sanding belt", "band file"],
         ("Abrasives", "Abrasive Belts", "Sanding Belts", "Abrasives & Finishing>Sanding Discs & Belts>Sanding Belts & Sheets")
     ),
-    (
-        ["cut-off disc", "cut off disc", "cut and grind disc", "metal cut off"],
+        (
+        ["cut-off disc", "cut off disc", "cut and grind disc", "cut n grind", "cut & grind",
+         "metal cut off", "cut/grind"],
         ("Abrasives", "Cutting & Grinding Wheels", "Cut-Off Wheels", "Abrasives & Finishing>Cut-Off & Grinding Wheels>Metal Cut-Off Wheels")
     ),
     (
@@ -149,6 +150,18 @@ TAXONOMY_RULES: List[Tuple[List[str], Tuple[str, str, str, str]]] = [
     (
         ["hunter fan", "cassius fan", "anisten fan"],
         ("Electrical & Lighting", "Ceiling Fans", "Indoor & Outdoor Fans", "Electrical & Lighting>Fans & Ventilation>Ceiling Fans")
+    ),
+        (
+        ["elect tape", "electrical tape", "vinyl tape", "insulating tape"],
+        ("Electrical & Lighting", "Wiring Devices", "Tape & Insulation", "Electrical & Lighting>Wiring, Boxes & Devices>Electrical Tape & Insulation")
+    ),
+    (
+        ["heater kit", "space heater", "heat gun", "portable heater"],
+        ("HVAC & Climate Control", "Heating", "Heaters & Heat Guns", "HVAC & Climate Control>Heating Equipment>Space Heaters & Heat Guns")
+    ),
+    (
+        ["tire pressure", "inflator gauge", "tire gauge"],
+        ("Automotive & Fleet", "Automotive Tools", "Tire & Pressure Tools", "Automotive & Fleet>Tools & Diagnostics>Tire Pressure Gauges & Inflators")
     ),
 
     # --- SAFETY & WORKWEAR ---
