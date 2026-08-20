@@ -29,6 +29,49 @@ def load_benchmark() -> List[Dict[str, Any]]:
     with open(norm_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
+def _compute_evidence_grounding(processed_rows: List[Dict[str, Any]]) -> float:
+    """
+    Real evidence-grounding metric: of all extracted attributes across the
+    benchmark run, what fraction have validation == 'grounded' (i.e. backed
+    by an exact substring match rather than an unverified inference)?
+    """
+    total = 0
+    grounded = 0
+    for row in processed_rows:
+        for attr in row.get("extracted_attributes", []):
+            total += 1
+            if attr.get("validation") == "grounded":
+                grounded += 1
+    if total == 0:
+        return 0.0
+    return round((grounded / total) * 100.0, 1)
+
+
+def _compute_uom_accuracy(processed_rows: List[Dict[str, Any]], benchmark_items: List[Dict[str, Any]]) -> float:
+    """
+    Real UOM metric: for every ground-truth attribute that specifies a uom,
+    check whether the pipeline's predicted attribute (matched by label) has
+    the same normalized uom.
+    """
+    total = 0
+    correct = 0
+    for i, gt in enumerate(benchmark_items):
+        pred = processed_rows[i] if i < len(processed_rows) else {}
+        pred_attrs_by_label = {
+            a.get("label", "").lower(): a for a in pred.get("extracted_attributes", [])
+        }
+        gt_uoms = gt.get("expected_uoms", {})
+        for label, expected_uom in gt_uoms.items():
+            if not expected_uom:
+                continue
+            total += 1
+            pred_attr = pred_attrs_by_label.get(label.lower())
+            if pred_attr and (pred_attr.get("uom") or "").strip().lower() == expected_uom.strip().lower():
+                correct += 1
+    if total == 0:
+        return 0.0
+    return round((correct / total) * 100.0, 1)
+
 
 def run_evaluation(pipeline_func=None) -> Dict[str, Any]:
     """
@@ -48,15 +91,28 @@ def run_evaluation(pipeline_func=None) -> Dict[str, Any]:
         }
 
     # Convert benchmark to input DataFrame
+    # Convert benchmark to input DataFrame.
+    # IMPORTANT: Part_Manuf must be the RAW distributor/vendor string exactly
+    # as it appears in production data (e.g. "Appliance Dealers Cooperative
+    # (APPDE)"), never the expected_manufacturer answer -- feeding the answer
+    # in silently inflates brand/manufacturer accuracy. Run migrate_benchmark.py
+    # first to add "raw_part_manuf" to each benchmark item.
     input_records = []
     for item in benchmark_items:
+        raw_manuf = item.get("raw_part_manuf")
+        if raw_manuf is None:
+            raise ValueError(
+                f"Benchmark item {item.get('mfg_part_num')} is missing 'raw_part_manuf'. "
+                "Run migrate_benchmark.py to add the real distributor string before "
+                "evaluating, or brand/manufacturer accuracy will be invalid."
+            )
         input_records.append({
             "Mfg_Part_Num": item.get("mfg_part_num", ""),
             "Part_Desc": item.get("part_desc", ""),
-            "E1_Brand": "-- Unbranded --",
+            "E1_Brand": item.get("raw_e1_brand", "-- Unbranded --"),
             "Unilog_Brand": "-- No Unilog Brand --",
-            "DIB_Brand": "-- No DIB Brand --",
-            "Part_Manuf": item.get("expected_manufacturer", "")
+            "DIB_Brand": item.get("raw_dib_brand", "-- No DIB Brand --"),
+            "Part_Manuf": raw_manuf,
         })
 
     df_input = pd.DataFrame(input_records)
@@ -142,7 +198,8 @@ def run_evaluation(pipeline_func=None) -> Dict[str, Any]:
     mfr_acc = round((mfr_correct / total_samples) * 100.0, 1) if total_samples else 0.0
     class_acc = round((class_correct / total_samples) * 100.0, 1) if total_samples else 0.0
     attr_acc = round((attr_correct / total_expected_attrs) * 100.0, 1) if total_expected_attrs else 0.0
-    
+    evidence_grounding_accuracy = _compute_evidence_grounding(processed_rows)
+    uom_accuracy = _compute_uom_accuracy(processed_rows, benchmark_items)
     overall_acc = round((brand_acc * 0.25 + mfr_acc * 0.15 + class_acc * 0.30 + attr_acc * 0.30), 1)
     hallucination_rate = round((hallucinated_count / max(1, total_expected_attrs)) * 100.0, 1)
     review_rate = round((review_count / total_samples) * 100.0, 1) if total_samples else 0.0
@@ -156,8 +213,8 @@ def run_evaluation(pipeline_func=None) -> Dict[str, Any]:
             "manufacturer_accuracy": mfr_acc,
             "classification_accuracy": class_acc,
             "attribute_accuracy": attr_acc,
-            "evidence_grounding_accuracy": 98.4,
-            "uom_accuracy": 99.2,
+            "evidence_grounding_accuracy": evidence_grounding_accuracy,
+            "uom_accuracy": uom_accuracy,
             "hallucination_rate": hallucination_rate,
             "review_rate": review_rate,
         },
