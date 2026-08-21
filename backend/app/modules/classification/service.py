@@ -49,18 +49,17 @@ TAXONOMY_RULES: List[Tuple[List[str], Tuple[str, str, str, str]]] = [
         ("Abrasives", "Abrasive Belts", "Sanding Belts", "Abrasives & Finishing>Sanding Discs & Belts>Sanding Belts & Sheets")
     ),
         (
-        ["cut-off disc", "cut off disc", "cut and grind disc", "cut n grind", "cut & grind",
-         "metal cut off", "cut/grind"],
-        ("Abrasives", "Cutting & Grinding Wheels", "Cut-Off Wheels", "Abrasives & Finishing>Cut-Off & Grinding Wheels>Metal Cut-Off Wheels")
-    ),
-    (
-        ["grinding wheel", "masonry cut off", "masonry grinding"],
-        ("Abrasives", "Cutting & Grinding Wheels", "Grinding Wheels", "Abrasives & Finishing>Cut-Off & Grinding Wheels>Masonry & Grinding Wheels")
-    ),
+    ["cut-off disc", "cut off disc", "cut and grind disc", "cut n grind", "cut & grind", "metal cut off", "chop wheel"],
+    ("Abrasives", "Cutting & Grinding Wheels", "Cut-Off Wheels", "Abrasives & Finishing>Cut-Off & Grinding Wheels>Metal Cut-Off Wheels")
+),
+(
+    ["grinding wheel", "grinding disc", "flap disc", "masonry cut off", "masonry grinding"],
+    ("Abrasives", "Cutting & Grinding Wheels", "Grinding Wheels", "Abrasives & Finishing>Cut-Off & Grinding Wheels>Masonry & Grinding Wheels")
+),
 
     # --- POWER TOOLS ---
     (
-        ["impact driver", "drill driver", "hammer drill", "drill press", "compact drill"],
+        ["impact driver", "drill driver", "hammer drill", "drill press", "compact drill", "drill"],
         ("Power Tools", "Cordless Power Tools", "Drills & Drivers", "Power Tools & Equipment>Cordless Drills & Drivers>Drill Drivers & Impact Drivers")
     ),
     (
@@ -122,9 +121,37 @@ TAXONOMY_RULES: List[Tuple[List[str], Tuple[str, str, str, str]]] = [
         ("Building Materials", "Siding & Sheathing", "Engineered Wood & Gypsum", "Building Materials & Hardware>Sheathing & Siding>Insulated Sheathing & Cement Siding")
     ),
 
+    # --- MASONRY & CONCRETE ---
+    (
+        ["mortar", "type n mortar", "type s mortar", "concrete mix", "grout"],
+        ("Building Materials", "Masonry & Concrete", "Mortar & Mixes", "Building Materials & Hardware>Masonry & Concrete>Mortar & Concrete Mixes")
+    ),
+
+    # --- AUTOMOTIVE & SPECIALTY TOOLS ---
+    (
+        ["tire pressure", "inflator gauge", "tire gauge"],
+        ("Automotive Tools", "Tire & Wheel Tools", "Pressure Gauges", "Automotive & Specialty Tools>Tire & Wheel Care>Tire Pressure Gauges & Inflators")
+    ),
+
+    # --- HVAC & CLIMATE ---
+    (
+        ["heater kit", "space heater", "forced air heater"],
+        ("HVAC & Climate", "Heating Equipment", "Heater Kits", "HVAC & Climate Equipment>Heaters>Heater Kits & Accessories")
+    ),
+    (
+        ["tire pressure", "inflator gauge", "tire gauge"],
+        ("Automotive Tools", "Tire & Wheel Tools", "Pressure Gauges", "Automotive & Specialty Tools>Tire & Wheel Care>Tire Pressure Gauges & Inflators")
+    ),
+    (
+        ["heater kit", "space heater", "forced air heater", "heat gun", "portable heater"],
+        ("HVAC & Climate", "Heating Equipment", "Heater Kits", "HVAC & Climate Equipment>Heaters>Heater Kits & Accessories")
+    ),
+
+
     # --- ELECTRICAL & LIGHTING ---
     (
-        ["led bulb", "incan", "halogen", "led multi cct", "flood", "candelabra", "cob bulb", "par38", "par30", "br30", "br40", "a19", "st19"],
+        ["led bulb", "led ", "incan", "halogen", "led multi cct", "flood", "candelabra",
+        "cob bulb", "par38", "par30", "par20", "a19", "st19", "sodium"],
         ("Electrical & Lighting", "Lamps & Bulbs", "LED & Incandescent Bulbs", "Electrical & Lighting>Lamps & Bulbs>LED Bulbs & Specialty Lamps")
     ),
     (
@@ -155,14 +182,7 @@ TAXONOMY_RULES: List[Tuple[List[str], Tuple[str, str, str, str]]] = [
         ["elect tape", "electrical tape", "vinyl tape", "insulating tape"],
         ("Electrical & Lighting", "Wiring Devices", "Tape & Insulation", "Electrical & Lighting>Wiring, Boxes & Devices>Electrical Tape & Insulation")
     ),
-    (
-        ["heater kit", "space heater", "heat gun", "portable heater"],
-        ("HVAC & Climate Control", "Heating", "Heaters & Heat Guns", "HVAC & Climate Control>Heating Equipment>Space Heaters & Heat Guns")
-    ),
-    (
-        ["tire pressure", "inflator gauge", "tire gauge"],
-        ("Automotive & Fleet", "Automotive Tools", "Tire & Pressure Tools", "Automotive & Fleet>Tools & Diagnostics>Tire Pressure Gauges & Inflators")
-    ),
+    
 
     # --- SAFETY & WORKWEAR ---
     (
@@ -180,7 +200,7 @@ TAXONOMY_RULES: List[Tuple[List[str], Tuple[str, str, str, str]]] = [
 
     # --- HARDWARE & HAND TOOLS ---
     (
-        ["saw blade", "router bit", "planer blade", "knives", "dado pro"],
+        ["saw blade", "router bit", "planer blade", "knives", "dado pro", "diamond blade", "tile blade"],
         ("Hardware & Hand Tools", "Cutting Accessories", "Blades & Bits", "Hardware & Hand Tools>Blades & Bits>Saw Blades & Driver Bits")
     ),
     (
@@ -192,7 +212,8 @@ TAXONOMY_RULES: List[Tuple[List[str], Tuple[str, str, str, str]]] = [
         ("Hardware & Hand Tools", "Layout & Measuring", "Lasers & Levels", "Hardware & Hand Tools>Measuring & Layout>Lasers, Levels & Tapes")
     ),
     (
-        ["wrench set", "mechanics set", "ratchet & socket set", "folding knife", "mini snip"],
+        ["wrench set", "mechanics set", "ratchet & socket set", "folding knife", "mini snip",
+        "screwdriver", "bit set", "universal joint", "plug cutter"],
         ("Hardware & Hand Tools", "Hand Tools", "Wrenches & Mechanics Tools", "Hardware & Hand Tools>Mechanics Tools>Wrenches & Sockets")
     ),
 ]

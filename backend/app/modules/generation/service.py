@@ -22,12 +22,13 @@ def get_attr_val(attrs: List[Dict[str, Any]], label_name: str) -> str:
             uom = f" {a['uom']}" if a.get("uom") else ""
             return f"{val}{uom}".strip()
     return ""
-
+FALLBACK_FINE = "Miscellaneous Products"
 
 def build_product_name(r: Dict[str, Any], attrs: List[Dict[str, Any]]) -> str:
     brand = r.get("brand_name") or ""
     series = get_attr_val(attrs, "Series")
-    fine = r.get("fine") or ""
+    fine_raw = r.get("fine") or ""
+    fine = "" if fine_raw == FALLBACK_FINE else fine_raw
     mpn = r.get("mfg_part_num") or ""
 
     parts = [p for p in [brand, series, fine, mpn] if p]
@@ -42,7 +43,8 @@ def generate_descriptions(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         attrs = r.get("extracted_attributes", [])
         brand = r.get("brand_name") or ""
         mpn = r.get("mfg_part_num") or ""
-        fine = r.get("fine") or ""
+        fine_raw = r.get("fine") or ""
+        fine = "" if fine_raw == FALLBACK_FINE else fine_raw
         series = get_attr_val(attrs, "Series")
         material = get_attr_val(attrs, "Material")
         color = get_attr_val(attrs, "Color")
