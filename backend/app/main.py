@@ -243,6 +243,32 @@ def review_action(row_id: int, request: ReviewActionRequest, job_id: Optional[st
     }
 
 
+def _compute_quality(rows: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Computes real field-completeness and trust metrics — no fabricated numbers."""
+    total = len(rows) or 1
+
+    def pct(cond) -> float:
+        return round(sum(1 for r in rows if cond(r)) / total * 100, 1)
+
+    return {
+        "field_completeness": {
+            "classpath_assigned": pct(lambda r: bool(r.get("classpath")) and "Unclassified" not in r.get("classpath", "")),
+            "brand_resolved": pct(lambda r: bool(r.get("brand_name"))),
+            "manufacturer_resolved": pct(lambda r: bool(r.get("manufacturer_name"))),
+            "mfr_url_present": pct(lambda r: bool(r.get("enrichment_mfr_url"))),
+            "attributes_extracted": pct(lambda r: bool(r.get("extracted_attributes"))),
+        },
+        "trust_signals": {
+            "fully_grounded_products": pct(
+                lambda r: bool(r.get("extracted_attributes"))
+                and all(a.get("validation") == "grounded" for a in r["extracted_attributes"])
+            ),
+            "zero_hallucination_rate": pct(
+                lambda r: not any(a.get("validation") == "missing_evidence" for a in r.get("extracted_attributes", []))
+            ),
+        },
+    }
+
 @app.get("/api/analytics")
 def analytics(job_id: Optional[str] = None):
     """Returns catalog intelligence analytics, category distributions, and KPI metrics."""
@@ -282,6 +308,7 @@ def analytics(job_id: Optional[str] = None):
         "avg_confidence": round(avg_conf, 2),
         "category_distribution": categories,
         "top_brands": dict(sorted(brands.items(), key=lambda x: x[1], reverse=True)[:10]),
+        "quality": _compute_quality(rows),
     }
 
 

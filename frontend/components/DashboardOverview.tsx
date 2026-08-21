@@ -26,6 +26,10 @@ interface AnalyticsData {
   avg_confidence: number;
   category_distribution: Record<string, number>;
   top_brands: Record<string, number>;
+  quality?: {
+    field_completeness: Record<string, number>;
+    trust_signals: Record<string, number>;
+  };
 }
 
 interface DashboardOverviewProps {
@@ -297,6 +301,41 @@ export default function DashboardOverview({
         </div>
       </div>
 
+      {analytics?.quality && (
+        <div className="p-5 rounded-xl glass-card space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-bold text-white">Data Quality Report</h3>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              ZERO FAKE NUMBERS
+            </span>
+          </div>
+
+          <div>
+            <p className="text-[10px] font-bold uppercase text-slate-500 mb-2">Field Completeness</p>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-xs">
+              {Object.entries(analytics.quality.field_completeness).map(([key, val]) => (
+                <div key={key} className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                  <div className="text-lg font-bold text-white">{val}%</div>
+                  <div className="text-slate-400 mt-0.5 capitalize">{key.replace(/_/g, " ")}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="text-[10px] font-bold uppercase text-slate-500 mb-2">Trust Signals</p>
+            <div className="grid grid-cols-2 gap-3 text-xs">
+              {Object.entries(analytics.quality.trust_signals).map(([key, val]) => (
+                <div key={key} className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                  <div className="text-lg font-bold text-emerald-400">{val}%</div>
+                  <div className="text-slate-400 mt-0.5 capitalize">{key.replace(/_/g, " ")}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Category Breakdown & Top Brands */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Category Breakdown */}
@@ -327,6 +366,7 @@ export default function DashboardOverview({
                 </div>
               );
             })}
+            
           </div>
         </div>
 
