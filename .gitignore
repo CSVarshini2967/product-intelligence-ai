@@ -11,7 +11,7 @@ node_modules/
 # Output files
 *.csv
 data/
-!data/manufacturer_docs/
-!data/manufacturer_docs/**
-!data/reference_docs/
-!data/reference_docs/benchmark_ground_truth.json
+!backend/data/manufacturer_docs/
+!backend/data/manufacturer_docs/**
+!backend/data/reference_docs/
+!backend/data/reference_docs/benchmark_ground_truth.json
