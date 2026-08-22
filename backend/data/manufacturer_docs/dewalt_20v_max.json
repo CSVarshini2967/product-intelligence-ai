@@ -1,0 +1,16 @@
+{
+  "document_id": "MFR-DOC-005",
+  "document_name": "DeWalt_20V_MAX_Cordless_Power_Tools_Catalog.pdf",
+  "manufacturer": "Stanley Black & Decker / DEWALT Industrial Tool Co.",
+  "brand": "DEWALT",
+  "product_series": "20V MAX / XR Brushless Series",
+  "model_numbers": ["DCD1007B", "DCD803B", "DCF860B", "DCF809D1", "DCF961B", "DCG410B", "DCS590B", "DCS384B", "DCN930B", "DCBL724B"],
+  "product_type": "Cordless Power Tools",
+  "source_url": "https://www.dewalt.com/products/power-tools",
+  "specifications": {
+    "Voltage Platform": {"value": "20", "uom": "V", "page": 1, "text": "Power Source: DEWALT 20V MAX Lithium-Ion Battery System with advanced thermal protection"},
+    "Motor Type": {"value": "High-Efficiency Brushless Motor", "uom": null, "page": 1, "text": "Motor: Industrial brushless motor delivers up to 75% more runtime and extended motor lifespan"},
+    "Warranty": {"value": "3 Year Limited Warranty, 1 Year Free Service, 90 Day Money Back", "uom": null, "page": 4, "text": "Warranty Information: 3 Year Limited Warranty, 1 Year Free Service Contract, 90 Day Money Back Guarantee"},
+    "Country Of Origin": {"value": "USA with Global Materials", "uom": null, "page": 4, "text": "Manufactured in USA with Global Materials"}
+  }
+}

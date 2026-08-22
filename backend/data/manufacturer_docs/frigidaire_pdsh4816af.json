@@ -1,0 +1,24 @@
+{
+  "document_id": "MFR-DOC-001",
+  "document_name": "Frigidaire_PDSH4816AF_Specification_Sheet.pdf",
+  "manufacturer": "Rheem Manufacturing / Frigidaire",
+  "brand": "FRIGIDAIRE",
+  "product_series": "Professional Series",
+  "model_numbers": ["PDSH4816AF"],
+  "product_type": "Built-In Dishwasher",
+  "source_url": "https://www.frigidaire.com/en/p/owner-center/product-support/PDSH4816AF",
+  "specifications": {
+    "Voltage Rating": {"value": "120", "uom": "V", "page": 1, "text": "Electrical Specifications: Voltage Rating: 120 V, Amperage Rating: 15 A"},
+    "Amperage Rating": {"value": "15", "uom": "A", "page": 1, "text": "Electrical Specifications: Voltage Rating: 120 V, Amperage Rating: 15 A"},
+    "Sound Level": {"value": "47", "uom": "dBA", "page": 1, "text": "Sound Level: 47 dBA ultra-quiet operation with sound dampening insulation"},
+    "Number of Wash Cycles": {"value": "5", "uom": null, "page": 2, "text": "5 Wash Cycles including Heavy, Normal, 30-Minute Quick Clean, China & Crystal, Energy Saver Plus"},
+    "Mounting Type": {"value": "Leg", "uom": null, "page": 1, "text": "Installation Type: Leg Mounting adjustable leveling feet"},
+    "Material": {"value": "Stainless Steel", "uom": null, "page": 1, "text": "Tub and Door Material: Smudge-Proof Stainless Steel"},
+    "Size": {"value": "24 in W x 24-1/4 in D", "uom": null, "page": 2, "text": "Overall Dimensions: 24 in W x 24-1/4 in D x 33-3/4 in to 35-3/4 in H"},
+    "Depth With Door Open": {"value": "50-1/4", "uom": "in", "page": 2, "text": "Depth With Door Open 90 Degrees: 50-1/4 in"},
+    "Energy Consumption": {"value": "240", "uom": "kWh", "page": 3, "text": "Estimated Annual Energy Consumption: 240 kW-hr Annual Energy"},
+    "Delay Start Hours": {"value": "1 to 12", "uom": "hr", "page": 2, "text": "Delay Start Hours: 1 to 12 hr Delay Start Hours"},
+    "Certifications": {"value": "ENERGY STAR, UL Listed, NSF Certified, ASSE 1006", "uom": null, "page": 3, "text": "Agency Approvals: ASSE 1006 | CEE Tier 2 Qualified | cUL Listed | ENERGY STAR Certified | NSF Certified | UL Listed"},
+    "Warranty": {"value": "1 Year Manufacturer, 1 Year Labor and Parts", "uom": null, "page": 4, "text": "Warranty Information: 1 Year Manufacturer, 1 Year Labor and Parts"}
+  }
+}

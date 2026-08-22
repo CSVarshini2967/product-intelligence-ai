@@ -1,0 +1,16 @@
+{
+  "document_id": "MFR-DOC-004",
+  "document_name": "Milwaukee_Cut_Off_and_Grinding_Wheels_Specification_Guide.pdf",
+  "manufacturer": "Milwaukee Electric Tool Corporation",
+  "brand": "Milwaukee",
+  "product_series": "Performance+ / Metal & Masonry Cut-Off Wheels",
+  "model_numbers": ["49-94-0013", "49-94-0029", "49-94-0033", "49-94-0001", "49-94-0048", "49-94-0053", "49-94-0101", "49-94-0107", "49-94-0117", "49-94-0123", "49-94-0501", "49-94-0503"],
+  "product_type": "Cut-Off Wheel / Grinding Wheel",
+  "source_url": "https://www.milwaukeetool.com/Accessories/Abrasives",
+  "specifications": {
+    "Material Compatibility": {"value": "Stainless Steel, Mild Steel, Sheet Metal, Cast Iron", "uom": null, "page": 1, "text": "Formulated with premium aluminum oxide grain and proprietary bonding matrix for fast, burr-free cuts in ferrous metals and stainless steel"},
+    "Arbor Size": {"value": "7/8", "uom": "in", "page": 1, "text": "Arbor Diameter: 7/8 in (22.2 mm) / 5/8-11 in threaded hub options"},
+    "Max Operating Speed": {"value": "13300", "uom": "RPM", "page": 2, "text": "Max RPM: Rated up to 13,300 RPM for high speed angle grinder safety (ANSI B7.1 compliant)"},
+    "Reinforcement": {"value": "Dual Fiberglass Mesh Reinforcement", "uom": null, "page": 2, "text": "Reinforcement: High tensile double fiberglass mesh layers prevent wheel shattering under lateral load"}
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "document_id": "MFR-DOC-006",
+  "document_name": "Trex_Transcend_Lineage_Decking_Catalog.pdf",
+  "manufacturer": "Trex Company Inc.",
+  "brand": "TREX",
+  "product_series": "Transcend Lineage / Enhance / Select 2.0",
+  "model_numbers": ["543140016", "543140020", "543142016", "543144016", "543143016", "543141016", "543140412", "543140416", "1513703", "1513708", "543302126"],
+  "product_type": "Composite Decking & Railing",
+  "source_url": "https://www.trex.com/products/decking/transcend-lineage/",
+  "specifications": {
+    "Material": {"value": "95% Recycled Wood & Plastic Composite", "uom": null, "page": 1, "text": "Core Formulation: 95% recycled sawdust and reclaimed plastic film with protective high-durability shell"},
+    "Board Profile": {"value": "1 in x 6 in Square Edge / Grooved", "uom": null, "page": 2, "text": "Dimensions: 1 in (25 mm) thickness x 5.5 in (140 mm) width available in 12 ft, 16 ft, 20 ft lengths"},
+    "Heat Mitigating Technology": {"value": "Engineered Solar Reflective Surface", "uom": null, "page": 2, "text": "Cool-Touch: Heat-mitigating color pigments reflect sun radiation to remain noticeably cooler underfoot"},
+    "Warranty": {"value": "50-Year Limited Residential Fade & Stain Warranty", "uom": null, "page": 3, "text": "Warranty: 50-Year Limited Residential Warranty and 50-Year Stain & Fade Warranty"}
+  }
+}

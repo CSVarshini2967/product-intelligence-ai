@@ -1,0 +1,21 @@
+{
+  "document_id": "MFR-DOC-002",
+  "document_name": "Whirlpool_WDTS7024RZ_Specification_Sheet.pdf",
+  "manufacturer": "Whirlpool Corporation",
+  "brand": "Whirlpool",
+  "product_series": "Eco Series",
+  "model_numbers": ["WDTS7024RZ"],
+  "product_type": "Built-In Dishwasher",
+  "source_url": "https://learnwhirlpool.com/smartsearchresults?searchtext=WDTS7024R",
+  "specifications": {
+    "Voltage Rating": {"value": "120", "uom": "V", "page": 1, "text": "Electrical Requirements: 120 V, 60 Hz, 10 A individual branch circuit"},
+    "Amperage Rating": {"value": "10", "uom": "A", "page": 1, "text": "Electrical Requirements: 120 V, 60 Hz, 10 A individual branch circuit"},
+    "Sound Level": {"value": "41", "uom": "dBA", "page": 1, "text": "Sound Rating: 41 dBA Quietest eco-performance dishwasher system"},
+    "Mounting Type": {"value": "Built-in", "uom": null, "page": 1, "text": "Mounting Type: Under-counter Built-in Mounting with side brackets"},
+    "Material": {"value": "Stainless Steel", "uom": null, "page": 1, "text": "Finish: Fingerprint Resistant Stainless Steel interior and exterior"},
+    "Size": {"value": "33-7/16 in H x 23-7/8 in W x 22-5/8 in D", "uom": null, "page": 2, "text": "Product Dimensions: 33-7/16 in H x 23-7/8 in W x 22-5/8 in D"},
+    "Depth With Door Open": {"value": "50-3/16", "uom": "in", "page": 2, "text": "Depth with Door Open: 50-3/16 in"},
+    "Features": {"value": "3rd rack with extra wash action, Adjustable 2nd Rack, Moisture Repellent Silverware Basket, Sensor cycle, Sani Rinse Option, Leak Detection System, Folding Tines, Triple Wash Spray", "uom": null, "page": 2, "text": "Key Features: 3rd rack with extra wash action, Adjustable 2nd Rack, 41 dBA, Moisture Repellent Silverware Basket, Sensor cycle, Sani Rinse Option, Leak Detection System, Folding Tines, Normal cycle, Triple Wash Spray, Quick Wash Cycle"},
+    "Warranty": {"value": "1 Year Limited Warranty Parts and Labor", "uom": null, "page": 3, "text": "Limited Warranty: 1 Year Limited Warranty Parts and Labor"}
+  }
+}

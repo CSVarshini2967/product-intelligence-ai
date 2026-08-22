@@ -1,0 +1,18 @@
+{
+  "document_id": "MFR-DOC-003",
+  "document_name": "3M_Cubitron_II_775L_Stikit_Film_Disc_Datasheet.pdf",
+  "manufacturer": "3M Company / Abrasive Systems Division",
+  "brand": "3M",
+  "product_series": "Cubitron II / 775L",
+  "model_numbers": ["3MABR-7100075678", "3MABR-7100045865", "3MABR-7100048736", "3MABR-7100075690", "3MABR-7100075692", "3MABR-7100145365"],
+  "product_type": "Abrasive Film Disc",
+  "source_url": "https://www.3m.com/3M/en_US/p/d/b40065407/",
+  "specifications": {
+    "Abrasive Material": {"value": "Precision-Shaped Ceramic Grain", "uom": null, "page": 1, "text": "Abrasive Material: 3M Precision-Shaped Ceramic Grain engineered with micro-replicated triangular points"},
+    "Backing Material": {"value": "3 mil Polyester Film", "uom": null, "page": 1, "text": "Backing: Tough 3 mil polyester film backing provides uniform flat finish and tear resistance"},
+    "Attachment Type": {"value": "Stikit Adhesive Backing", "uom": null, "page": 1, "text": "Attachment: Stikit pressure sensitive adhesive (PSA) for fast disc changes"},
+    "Diameter": {"value": "5", "uom": "in", "page": 2, "text": "Standard Disc Diameter: 5 in (127 mm) diameter hole-free roll format"},
+    "Quantity": {"value": "50", "uom": "Disc/Box", "page": 2, "text": "Standard Package: 50 Disc/Box, 4 boxes per case (200 discs total)"},
+    "Max RPM": {"value": "12000", "uom": "RPM", "page": 2, "text": "Maximum Operating Speed: 12,000 Max RPM on random orbital sanders"}
+  }
+}

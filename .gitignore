@@ -10,8 +10,3 @@ node_modules/
 
 # Output files
 *.csv
-data/
-!backend/data/manufacturer_docs/
-!backend/data/manufacturer_docs/**
-!backend/data/reference_docs/
-!backend/data/reference_docs/benchmark_ground_truth.json

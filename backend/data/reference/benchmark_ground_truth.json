@@ -1,0 +1,373 @@
+[
+  {
+    "mfg_part_num": "PDSH4816AF",
+    "part_desc": "PDSH4816AF Dishwasher SS - Display Only",
+    "expected_brand": "FRIGIDAIRE",
+    "expected_manufacturer": "Rheem Manufacturing",
+    "expected_classpath": "Appliances & Consumer Electronics>Kitchen Appliances>Built-In Dishwashers",
+    "expected_attributes": {
+      "Material": "Stainless Steel",
+      "Mounting Type": "Leg",
+      "Voltage Rating": "120",
+      "Sound Level": "47"
+    },
+    "expected_uoms": {
+      "Voltage Rating": "V",
+      "Amperage Rating": "A",
+      "Sound Level": "dBA",
+      "Depth With Door Open": "in",
+      "Energy Consumption": "kWh"
+    },
+    "difficulty_level": "medium",
+    "raw_part_manuf": "Appliance Dealers Cooperative (APPDE)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "WDTS7024RZ",
+    "part_desc": "WDTS7024RZ Dishwasher SS - Display Only",
+    "expected_brand": "Whirlpool",
+    "expected_manufacturer": "Whirlpool Corporation",
+    "expected_classpath": "Appliances & Consumer Electronics>Kitchen Appliances>Built-In Dishwashers",
+    "expected_attributes": {
+      "Material": "Stainless Steel",
+      "Mounting Type": "Built-in",
+      "Voltage Rating": "120",
+      "Sound Level": "41"
+    },
+    "expected_uoms": {
+      "Voltage Rating": "V",
+      "Amperage Rating": "A",
+      "Sound Level": "dBA",
+      "Depth With Door Open": "in"
+    },
+    "difficulty_level": "medium",
+    "raw_part_manuf": "Appliance Dealers Cooperative (APPDE)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "KDFM404KPS",
+    "part_desc": "KDFM404KPS Dishwasher SS",
+    "expected_brand": "KitchenAid",
+    "expected_manufacturer": "Appliance Dealers Cooperative",
+    "expected_classpath": "Appliances & Consumer Electronics>Kitchen Appliances>Built-In Dishwashers",
+    "expected_attributes": {
+      "Material": "Stainless Steel"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Appliance Dealers Cooperative (APPDE)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "PDT715SYVFS",
+    "part_desc": "PDT715SYVFS Ge Dishwasher SS",
+    "expected_brand": "GE",
+    "expected_manufacturer": "Appliance Dealers Cooperative",
+    "expected_classpath": "Appliances & Consumer Electronics>Kitchen Appliances>Built-In Dishwashers",
+    "expected_attributes": {
+      "Material": "Stainless Steel",
+      "Brand": "GE"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Appliance Dealers Cooperative (APPDE)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "LDPH5554D",
+    "part_desc": "LDPH5554D LG Dishwasher BSS",
+    "expected_brand": "LG",
+    "expected_manufacturer": "Appliance Dealers Cooperative",
+    "expected_classpath": "Appliances & Consumer Electronics>Kitchen Appliances>Built-In Dishwashers",
+    "expected_attributes": {
+      "Material": "Black Stainless Steel",
+      "Brand": "LG"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Appliance Dealers Cooperative (APPDE)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "KDTS424SBE",
+    "part_desc": "KDTS424SBE Kitchen Aid Dishwasher Bk",
+    "expected_brand": "KitchenAid",
+    "expected_manufacturer": "Appliance Dealers Cooperative",
+    "expected_classpath": "Appliances & Consumer Electronics>Kitchen Appliances>Built-In Dishwashers",
+    "expected_attributes": {
+      "Color": "Black",
+      "Brand": "KitchenAid"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Appliance Dealers Cooperative (APPDE)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "DF7004WE",
+    "part_desc": "DF7004WE Speed Queen Elect Dryer Wh",
+    "expected_brand": "Speed Queen",
+    "expected_manufacturer": "Appliance Dealers Cooperative",
+    "expected_classpath": "Appliances & Consumer Electronics>Laundry Appliances>Dryers",
+    "expected_attributes": {
+      "Power Source": "Electric",
+      "Color": "White",
+      "Brand": "Speed Queen"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Appliance Dealers Cooperative (APPDE)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "FF7011WN",
+    "part_desc": "FF7011WN Speed Queen Washer Wh",
+    "expected_brand": "Speed Queen",
+    "expected_manufacturer": "Appliance Dealers Cooperative",
+    "expected_classpath": "Appliances & Consumer Electronics>Laundry Appliances>Washers",
+    "expected_attributes": {
+      "Color": "White",
+      "Brand": "Speed Queen"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Appliance Dealers Cooperative (APPDE)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "3MABR-7100075678",
+    "part_desc": "3M 775L Stikit Film P150 - Cubitron II 50 Disc/Box",
+    "expected_brand": "3M",
+    "expected_manufacturer": "3M / Jam Industrial Supply",
+    "expected_classpath": "Abrasives & Finishing>Sanding Discs & Belts>Film & Paper Discs",
+    "expected_attributes": {
+      "Grit": "P150",
+      "Quantity": "50",
+      "Packaging": "Disc/Box",
+      "Series": "Cubitron II"
+    },
+    "expected_uoms": {
+      "Diameter": "in",
+      "Max RPM": "RPM"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Jam Industrial Supply LLC (JAMIN)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "3MABR-7100045865",
+    "part_desc": "3M 775L Stikit Film P120 - Cubitron II 50 Disc/Box",
+    "expected_brand": "3M",
+    "expected_manufacturer": "3M / Jam Industrial Supply",
+    "expected_classpath": "Abrasives & Finishing>Sanding Discs & Belts>Film & Paper Discs",
+    "expected_attributes": {
+      "Grit": "P120",
+      "Quantity": "50",
+      "Packaging": "Disc/Box",
+      "Series": "Cubitron II"
+    },
+    "expected_uoms": {
+      "Diameter": "in",
+      "Max RPM": "RPM"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Jam Industrial Supply LLC (JAMIN)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "3MABR-7100048736",
+    "part_desc": "3M 775L Stikit Film P80 - Cubitron II 50 Disc/Box",
+    "expected_brand": "3M",
+    "expected_manufacturer": "3M / Jam Industrial Supply",
+    "expected_classpath": "Abrasives & Finishing>Sanding Discs & Belts>Film & Paper Discs",
+    "expected_attributes": {
+      "Grit": "P80",
+      "Quantity": "50",
+      "Packaging": "Disc/Box",
+      "Series": "Cubitron II"
+    },
+    "expected_uoms": {
+      "Diameter": "in",
+      "Max RPM": "RPM"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Jam Industrial Supply LLC (JAMIN)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "DCB518ASTS06G",
+    "part_desc": "DCB518ASTS06G Diablo 1/2\"x18\" - Sanding Belt 6pc",
+    "expected_brand": "Diablo",
+    "expected_manufacturer": "Freud Inc",
+    "expected_classpath": "Abrasives & Finishing>Sanding Discs & Belts>Sanding Belts & Sheets",
+    "expected_attributes": {
+      "Size": "1/2 in x 18 in",
+      "Quantity": "6",
+      "Brand": "Diablo"
+    },
+    "difficulty_level": "medium",
+    "raw_part_manuf": "Freud Inc (2435)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "DBD090094101F",
+    "part_desc": "DBD090094101F Diablo 9\" - Metal Cut-Off Disc",
+    "expected_brand": "Diablo",
+    "expected_manufacturer": "Freud Inc",
+    "expected_classpath": "Abrasives & Finishing>Cut-Off & Grinding Wheels>Metal Cut-Off Wheels",
+    "expected_attributes": {
+      "Diameter": "9",
+      "Brand": "Diablo"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Freud Inc (2435)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "49-94-0013",
+    "part_desc": "49-94-0013 Milw 5\"x.045\"x7/8\" Metal Cut Off Disc",
+    "expected_brand": "Milwaukee",
+    "expected_manufacturer": "Milwaukee Electric Tool Corp",
+    "expected_classpath": "Abrasives & Finishing>Cut-Off & Grinding Wheels>Metal Cut-Off Wheels",
+    "expected_attributes": {
+      "Diameter": "5",
+      "Thickness": "0.045",
+      "Arbor Size": "7/8",
+      "Brand": "Milwaukee"
+    },
+    "expected_uoms": {
+      "Diameter": "in",
+      "Thickness": "in",
+      "Arbor Size": "in",
+      "Max Operating Speed": "RPM"
+    },
+    "difficulty_level": "medium",
+    "raw_part_manuf": "Milwaukee Accessory (4031)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "49-94-0101",
+    "part_desc": "49-94-0101 Milw 4-1/2\"x.045\"x7/8\" Perform+ Metal Cut Off Disc 10pc",
+    "expected_brand": "Milwaukee",
+    "expected_manufacturer": "Milwaukee Electric Tool Corp",
+    "expected_classpath": "Abrasives & Finishing>Cut-Off & Grinding Wheels>Metal Cut-Off Wheels",
+    "expected_attributes": {
+      "Diameter": "4-1/2",
+      "Quantity": "10",
+      "Series": "Performance+"
+    },
+    "difficulty_level": "medium",
+    "raw_part_manuf": "Milwaukee Accessory (4031)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "543140016",
+    "part_desc": "1nx6-16' Biscayne Sq Edge - Trex Transcend Lineage Decking",
+    "expected_brand": "TREX",
+    "expected_manufacturer": "Trex / US Lumber",
+    "expected_classpath": "Building Materials & Hardware>Decking & Railing>Composite Decking",
+    "expected_attributes": {
+      "Color": "Biscayne",
+      "Length": "16",
+      "Edge Type": "Square Edge",
+      "Series": "Transcend Lineage"
+    },
+    "difficulty_level": "medium",
+    "raw_part_manuf": "U S Lumber (3073)",
+    "raw_e1_brand": "TREX",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "543140412",
+    "part_desc": "1nx6-12' Biscayne Grooved - Trex Transcend Lineage Decking",
+    "expected_brand": "TREX",
+    "expected_manufacturer": "Trex / US Lumber",
+    "expected_classpath": "Building Materials & Hardware>Decking & Railing>Composite Decking",
+    "expected_attributes": {
+      "Color": "Biscayne",
+      "Length": "12",
+      "Edge Type": "Grooved",
+      "Series": "Transcend Lineage"
+    },
+    "difficulty_level": "medium",
+    "raw_part_manuf": "U S Lumber (3073)",
+    "raw_e1_brand": "TREX",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "ADB15516CS",
+    "part_desc": "1x6-16' Coastline Sq Edge - Vintage Azek PVC Decking",
+    "expected_brand": "TIMBERTECH",
+    "expected_manufacturer": "TimberTech / Parksite",
+    "expected_classpath": "Building Materials & Hardware>Decking & Railing>Composite Decking",
+    "expected_attributes": {
+      "Color": "Coastline",
+      "Length": "16",
+      "Material": "PVC",
+      "Series": "Vintage Azek"
+    },
+    "difficulty_level": "medium",
+    "raw_part_manuf": "Parksite (6151)",
+    "raw_e1_brand": "TIMBERTECH",
+    "raw_dib_brand": "-- No DIB Brand --"
+  },
+  {
+    "mfg_part_num": "65-1224",
+    "part_desc": "65-1224 4' Led Strip Light",
+    "expected_brand": "Satco",
+    "expected_manufacturer": "Satco Products Inc",
+    "expected_classpath": "Electrical & Lighting>Fixtures & Wall Lights>Downlights & Ceiling Lights",
+    "expected_attributes": {
+      "Length": "4",
+      "Technology": "LED",
+      "Brand": "Satco"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Satco Prod Inc (5573)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "Satco"
+  },
+  {
+    "mfg_part_num": "576355",
+    "part_desc": "576355 60/100/150 Led Med 50k",
+    "expected_brand": "Philips",
+    "expected_manufacturer": "Philips Lighting",
+    "expected_classpath": "Electrical & Lighting>Lamps & Bulbs>LED Bulbs & Specialty Lamps",
+    "expected_attributes": {
+      "Base Type": "Medium",
+      "Color Temperature": "5000K",
+      "Technology": "LED",
+      "Brand": "Philips"
+    },
+    "difficulty_level": "medium",
+    "raw_part_manuf": "Phillips Lighting (5831)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "Philips"
+  },
+  {
+    "mfg_part_num": "DCD1007B",
+    "part_desc": "DCD1007B Dewalt 20V Cordless - 1/2\" Hammer Drill (Bare)",
+    "expected_brand": "DEWALT",
+    "expected_manufacturer": "Stanley Black & Decker / DEWALT",
+    "expected_classpath": "Power Tools & Equipment>Cordless Drills & Drivers>Drill Drivers & Impact Drivers",
+    "expected_attributes": {
+      "Voltage Rating": "20",
+      "Chuck Size": "1/2",
+      "Tool Format": "Bare Tool",
+      "Brand": "DEWALT"
+    },
+    "difficulty_level": "easy",
+    "raw_part_manuf": "Black & Decker/dewlt (2585)",
+    "raw_e1_brand": "-- Unbranded --",
+    "raw_dib_brand": "DEWALT"
+  }
+]
