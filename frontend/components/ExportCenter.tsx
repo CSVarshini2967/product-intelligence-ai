@@ -18,13 +18,15 @@ interface ExportCenterProps {
 }
 
 export default function ExportCenter({ jobId, totalRows }: ExportCenterProps) {
-  const downloadCatalogUrl = jobId 
-    ? `http://localhost:8000/api/download/${jobId}` 
-    : "http://localhost:8000/api/download/default";
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-  const downloadAuditUrl = jobId 
-    ? `http://localhost:8000/api/download/${jobId}/audit` 
-    : "http://localhost:8000/api/download/default/audit";
+const downloadCatalogUrl = jobId
+    ? `${API_BASE}/api/download/${jobId}`
+    : `${API_BASE}/api/download/default`;
+
+const downloadAuditUrl = jobId
+    ? `${API_BASE}/api/download/${jobId}/audit`
+    : `${API_BASE}/api/download/default/audit`;
 
   return (
     <div className="space-y-6">

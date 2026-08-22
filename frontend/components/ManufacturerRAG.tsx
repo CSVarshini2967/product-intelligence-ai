@@ -33,7 +33,7 @@ export default function ManufacturerRAG() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/manufacturer-docs")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/api/manufacturer-docs`)
       .then((res) => res.json())
       .then((data) => {
         if (data.documents) {

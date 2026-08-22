@@ -50,7 +50,7 @@ export default function EvaluationBenchmark() {
   const fetchEval = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8000/api/evaluation");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/api/evaluation`);
       const data = await res.json();
       if (data.metrics) {
         setMetrics(data.metrics);

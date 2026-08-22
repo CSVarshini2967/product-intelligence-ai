@@ -10,7 +10,7 @@ import ManufacturerRAG from "@/components/ManufacturerRAG";
 import EvaluationBenchmark from "@/components/EvaluationBenchmark";
 import ExportCenter from "@/components/ExportCenter";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<string>("overview");
