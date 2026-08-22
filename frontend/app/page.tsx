@@ -95,18 +95,20 @@ export default function HomePage() {
 
   // Initial load
   useEffect(() => {
+    if (!jobId) return;
+
     fetchAnalytics();
     fetchProducts(currentPage, searchQuery, selectedDept, selectedTier, needsReviewOnly);
     fetchReviewQueue();
-  }, [fetchAnalytics, fetchProducts, fetchReviewQueue, currentPage, searchQuery, selectedDept, selectedTier, needsReviewOnly]);
+  }, [jobId, fetchAnalytics, fetchProducts, fetchReviewQueue, currentPage, searchQuery, selectedDept, selectedTier, needsReviewOnly]);
 
   // Run Pipeline Trigger
   const handleRunPipeline = async (uploadedFile?: File) => {
+    if (!uploadedFile) return;
+
     setLoading(true);
     const formData = new FormData();
-    if (uploadedFile) {
-      formData.append("file", uploadedFile);
-    }
+    formData.append("file", uploadedFile);
 
     try {
       const res = await fetch(`${API_BASE}/api/process`, {

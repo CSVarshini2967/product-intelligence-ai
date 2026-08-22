@@ -51,24 +51,20 @@ def health():
 
 
 @app.post("/api/process")
-async def process_csv(file: Optional[UploadFile] = File(None)):
+async def process_csv(file: UploadFile = File(...)):
     """
-    Runs the complete 12-module intelligence pipeline on an uploaded CSV
-    or uses the sample dataset if no file is uploaded.
+    Runs the complete 12-module intelligence pipeline on an uploaded CSV.
     """
     global _LATEST_JOB_ID
 
-    if file and file.filename:
-        raw_bytes = await file.read()
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="Upload a CSV file to process")
+
+    raw_bytes = await file.read()
+    try:
         df_input = pd.read_csv(io.BytesIO(raw_bytes))
-    else:
-        # Default sample dataset
-        sample_path = os.path.join(os.path.dirname(__file__), "..", "data", "raw", "Unihack__Sample_Dataset_-_Input.csv")
-        if os.path.exists(sample_path):
-            df_input = pd.read_csv(sample_path)
-        else:
-            sample_appliances = os.path.join(os.path.dirname(__file__), "..", "data", "raw", "appliances_scope.csv")
-            df_input = pd.read_csv(sample_appliances)
+    except (pd.errors.EmptyDataError, pd.errors.ParserError, UnicodeDecodeError) as exc:
+        raise HTTPException(status_code=400, detail="The uploaded file must be a valid CSV") from exc
 
     result = run_pipeline(df_input)
     job_id = str(uuid.uuid4())[:8]
@@ -104,22 +100,7 @@ def _get_active_rows(job_id: Optional[str] = None) -> List[Dict[str, Any]]:
     global _LATEST_JOB_ID
     target_id = job_id or _LATEST_JOB_ID
     if not target_id or target_id not in _STORE:
-        # Auto-run sample dataset if not yet processed
-        sample_path = os.path.join(os.path.dirname(__file__), "..", "data", "raw", "Unihack__Sample_Dataset_-_Input.csv")
-        if not os.path.exists(sample_path):
-            sample_path = os.path.join(os.path.dirname(__file__), "..", "data", "raw", "appliances_scope.csv")
-        
-        df_input = pd.read_csv(sample_path)
-        result = run_pipeline(df_input)
-        jid = str(uuid.uuid4())[:8]
-        _LATEST_JOB_ID = jid
-        _STORE[jid] = {
-            "job_id": jid,
-            "rows": result["rows"],
-            "summary": result["summary"],
-            "rows_processed": result["rows_processed"],
-        }
-        return result["rows"]
+        raise HTTPException(status_code=404, detail="Upload a CSV file before requesting catalog data")
 
     return _STORE[target_id]["rows"]
 

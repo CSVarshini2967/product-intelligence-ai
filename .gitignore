@@ -13,4 +13,5 @@ node_modules/
 data/
 !data/manufacturer_docs/
 !data/manufacturer_docs/**
+!data/reference_docs/
 !data/reference_docs/benchmark_ground_truth.json
